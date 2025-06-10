@@ -70,7 +70,7 @@ jobs:
       - name: Rename executable for platform
         run: |
           if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
-            mv bin/certship bin/certship-ubuntu
+            mv bin/certship bin/certship-linux
           elif [ "${{ matrix.os }}" = "macos-latest" ]; then
             mv bin/certship bin/certship-macos
           elif [ "${{ matrix.os }}" = "windows-latest" ]; then
@@ -113,8 +113,9 @@ jobs:
           prerelease: false
           generate_release_notes: true
           files: |
-            all_artifacts/**/certship-*
-            all_artifacts/**/certship-*.exe
+            all_artifacts/**/certship-linux
+            all_artifacts/**/certship-macos
+            all_artifacts/**/certship-windows.exe
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
