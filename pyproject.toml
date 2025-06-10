@@ -1,0 +1,12 @@
+[tool.poetry]
+name = "certship"
+version = "0.0.1"
+description = "ACME cert auto deployment tool"
+authors = ["laofahai <laofahai@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.7"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
