@@ -7,6 +7,11 @@
 A Python tool that uses acme.sh to automatically apply for certificates and deploy them to cloud platforms (such as Alibaba Cloud AliOSS).
 
 ## Install dependencies
+You can install certship directly from PyPI:
+```bash
+pip install certship
+```
+Or use poetry for development:
 ```bash
 poetry install
 ```
@@ -16,14 +21,18 @@ You can run the tool via poetry:
 ```bash
 poetry run certship --help
 ```
-Or directly:
+Or directly after pip install:
 ```bash
-python3 -m src.cli --help
+certship --help
+```
+Or with Python module:
+```bash
+python3 -m certship.cli --help
 ```
 
 ### Example
 ```bash
-poetry run certship \
+certship \
   --domain <your domain> \
   --dns-provider <dns provider, default ali> \
   --platform alioss \

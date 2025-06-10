@@ -2,13 +2,18 @@
 
 > 作者博客：https://laofahai.cool
 
-一个使用 acme.sh 自动申请SSL证书，并自动绑定到云平台对象存储（如阿里云 AliOSS）的工具
-起因就是因为这个博客的静态资源托管到Vercel之类的话速度太慢，就放到了国内的平台，但国内平台需要域名备案而且SSL不免费，就写了这个工具 用 acme 从 Let's Encrypt 之类的申请证书，并且绑定到 OSS Bucket 的域名。
+[English README](./README.md)
 
-> 证书来源：Let's Encrypt（acme.sh 仅为签发工具）
-> 特别鸣谢： Github Copilot 的帮助
+一个使用 acme.sh 自动申请 Let's Encrypt 证书，并自动部署到云平台（如阿里云 AliOSS）的 Python 工具。
+
+- 证书来源：Let's Encrypt（acme.sh 仅为签发工具）
 
 ## 安装依赖
+你可以直接通过 PyPI 安装 certship：
+```bash
+pip install certship
+```
+或用于开发：
 ```bash
 poetry install
 ```
@@ -18,14 +23,18 @@ poetry install
 ```bash
 poetry run certship --help
 ```
-或直接运行：
+或 pip 安装后直接运行：
 ```bash
-python3 -m src.cli --help
+certship --help
+```
+或用 Python module 方式：
+```bash
+python3 -m certship.cli --help
 ```
 
 ### 示例
 ```bash
-poetry run certship \
+certship \
   --domain <你的域名> \
   --dns-provider <dns服务商，默认ali> \
   --platform alioss \
@@ -70,4 +79,3 @@ poetry run certship \
 ---
 
 欢迎 PR！
-
