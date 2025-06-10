@@ -2,7 +2,7 @@
 
 > 作者博客：https://laofahai.cool
 
-一个使用 acme.sh 自动申请 Let's Encrypt 证书，并自动部署到云平台（如阿里云 AliOSS）的 Python 工具。
+一个使用 acme.sh 自动申请SSL证书，并自动绑定到云平台对象存储（如阿里云 AliOSS）的工具。
 
 - 证书来源：Let's Encrypt（acme.sh 仅为签发工具）
 

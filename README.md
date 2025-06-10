@@ -2,6 +2,8 @@
 
 > Author blog: https://laofahai.cool
 
+[中文版说明 (Chinese README)](./README_zh.md)
+
 A Python tool that uses acme.sh to automatically apply for certificates and deploy them to cloud platforms (such as Alibaba Cloud AliOSS).
 
 ## Install dependencies
@@ -66,4 +68,3 @@ poetry run certship \
 ---
 
 PRs are welcome!
-
