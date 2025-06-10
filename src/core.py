@@ -5,12 +5,14 @@ import datetime
 from cryptography import x509
 from cryptography.hazmat.backends import default_backend
 
-def run_acme_issue(domain: str, dns_provider: str, ecc: bool = False, force: bool = False):
-    args = ["~/.acme.sh/acme.sh", "--issue", f"--dns", f"dns_{dns_provider}", "-d", domain, "--debug"]
+def run_acme_issue(domain: str, dns_provider: str, ecc: bool = False, force: bool = False, debug: bool = False):
+    args = ["~/.acme.sh/acme.sh", "--issue", f"--dns", f"dns_{dns_provider}", "-d", domain]
     if ecc:
         args += ["--keylength", "ec-256", "--ecc"]
     if force:
         args.append("--force")
+    if debug:
+        args.append("--debug")
     subprocess.run(" ".join(args), shell=True, check=True)
 
 def get_cert_paths(domain: str, ecc: bool = False):
