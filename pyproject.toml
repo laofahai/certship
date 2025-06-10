@@ -18,7 +18,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "certship"
-version = "0.0.1"
+version = "0.1.9"
 description = "A tool for auto deploy cert to cloud storage service provider."
 authors = ["laofahai <laofahai@gmail.com>"]
 readme = "README.md"
