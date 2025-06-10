@@ -1,6 +1,5 @@
 [project]
 name = "certship"
-version = "0.0.1"
 description = "A tool for auto deploy cert to cloud storage service provider."
 authors = [
     {name = "laofahai",email = "laofahai@gmail.com"}

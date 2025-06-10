@@ -45,13 +45,13 @@ jobs:
 
       - name: Build executable
         run: |
-          pyinstaller --onefile -p src src/cli.py --name certship --distpath dist -y
+          pyinstaller --onefile -p src src/cli.py --name certship --distpath bin -y
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: certship-${{ matrix.os }}
-          path: dist/certship*
+          path: bin/certship*
 
       - name: Publish to PyPI
         if: matrix.os == 'ubuntu-latest'
