@@ -33,6 +33,16 @@ jobs:
       - name: Clean build directory
         run: rm -rf build/* build/certship
 
+      - name: Sync version from git tag
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          TAG_VERSION=$(echo "${{ github.ref_name }}" | sed 's/^v//')
+          sed -i -E "s/^version = \"[0-9]+\.[0-9]+\.[0-9]+\"/version = \"$TAG_VERSION\"/" pyproject.toml
+
+      - name: Build Python package (for PyPI)
+        if: matrix.os == 'ubuntu-latest'
+        run: poetry build
+
       - name: Build executable
         run: |
           pyinstaller --onefile -p src src/cli.py --name certship --distpath dist -y
@@ -46,17 +56,6 @@ jobs:
       - name: Clean dist directory
         if: matrix.os == 'ubuntu-latest'
         run: rm -rf dist/*
-
-      - name: Sync version from git tag
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          TAG_VERSION=$(echo "${{ github.ref_name }}" | sed 's/^v//')
-          sed -i '' -E "s/^version = \"[0-9]+\.[0-9]+\.[0-9]+\"/version = \"$TAG_VERSION\"/" pyproject.toml
-          sed -i '' -E "s/^version = \"[0-9]+\.[0-9]+\.[0-9]+\"/version = \"$TAG_VERSION\"/" pyproject.toml
-
-      - name: Build Python package (for PyPI)
-        if: matrix.os == 'ubuntu-latest'
-        run: poetry build
 
       - name: Publish to PyPI
         if: matrix.os == 'ubuntu-latest'
