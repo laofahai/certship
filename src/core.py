@@ -26,7 +26,7 @@ def cert_is_expired(cert_path: Path) -> bool:
         cert_data = cert_path.read_bytes()
         cert = x509.load_pem_x509_certificate(cert_data, default_backend())
         not_after = cert.not_valid_after_utc
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now(datetime.timezone.utc)
         return now > not_after
     except Exception as e:
         print(f"[警告] 检查证书有效期失败: {e}")
