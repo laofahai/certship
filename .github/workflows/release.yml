@@ -30,10 +30,17 @@ jobs:
           pip install poetry pyinstaller
           poetry install
 
-      - name: Clean build directory
+      - name: Clean build directory (Linux/macOS)
+        if: runner.os != 'Windows'
         run: |
           rm -rf build/* build/certship
           rm -rf bin/*
+
+      - name: Clean build directory (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          Remove-Item -Recurse -Force build/*,build/certship,bin/*
+        shell: pwsh
 
       - name: Sync version from git tag
         if: matrix.os == 'ubuntu-latest'
