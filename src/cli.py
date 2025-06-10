@@ -2,18 +2,18 @@ import argparse
 from .core import run_acme_issue, get_cert_paths
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--domain", required=True)
-    parser.add_argument("--dns-provider", default="ali")
-    parser.add_argument("--platform", required=True, choices=["alioss", "tencentcos"])
-    parser.add_argument("--oss-bucket")
-    parser.add_argument("--oss-endpoint")
-    parser.add_argument("--ecc", action="store_true")
-    parser.add_argument("--run", action="store_true")
-    parser.add_argument("--force", action="store_true", help="强制续签证书")
-    parser.add_argument("--ali-key", help="阿里云 AccessKeyId")
-    parser.add_argument("--ali-secret", help="阿里云 AccessKeySecret")
-    parser.add_argument("--debug", action="store_true", help="acme.sh 调试模式")
+    parser = argparse.ArgumentParser(description="certship: Automatically issue Let's Encrypt certificates with acme.sh and deploy to cloud platforms (AliOSS, Tencent COS, etc). Author: laofahai.cool")
+    parser.add_argument("--domain", required=True, help="The domain to apply for the certificate (required)")
+    parser.add_argument("--dns-provider", default="ali", help="DNS provider, default is ali (optional, any DNS plugin supported by acme.sh)")
+    parser.add_argument("--platform", required=True, choices=["alioss", "tencentcos"], help="Target platform, currently only supports alioss or tencentcos (required)")
+    parser.add_argument("--oss-bucket", help="Aliyun OSS bucket name (required for alioss)")
+    parser.add_argument("--oss-endpoint", help="OSS endpoint (required for alioss)")
+    parser.add_argument("--ecc", action="store_true", help="Use ECC certificate (optional)")
+    parser.add_argument("--run", action="store_true", help="Issue and deploy certificate (optional, if not set, only deploys existing certificate)")
+    parser.add_argument("--force", action="store_true", help="Force certificate renewal (optional)")
+    parser.add_argument("--ali-key", help="Aliyun AccessKeyId (required for alioss)")
+    parser.add_argument("--ali-secret", help="Aliyun AccessKeySecret (required for alioss)")
+    parser.add_argument("--debug", action="store_true", help="acme.sh debug mode (optional)")
     args = parser.parse_args()
 
     if args.ali_key:
