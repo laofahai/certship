@@ -30,9 +30,12 @@ jobs:
           pip install poetry pyinstaller
           poetry install
 
+      - name: Clean build directory
+        run: rm -rf build/* build/certship
+
       - name: Build executable
         run: |
-          pyinstaller --onefile -p src src/cli.py --name certship --distpath build
+          pyinstaller --onefile -p src src/cli.py --name certship --distpath build -y
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
