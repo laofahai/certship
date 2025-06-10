@@ -39,7 +39,7 @@ jobs:
       - name: Clean build directory (Windows)
         if: runner.os == 'Windows'
         run: |
-          Remove-Item -Recurse -Force build/*,build/certship,bin/*
+          Remove-Item -Recurse -Force build/*,build/certship,bin/* -ErrorAction SilentlyContinue
         shell: pwsh
 
       - name: Sync version from git tag
@@ -47,6 +47,17 @@ jobs:
         run: |
           TAG_VERSION=$(echo "${{ github.ref_name }}" | sed 's/^v//')
           sed -i -E "s/^version = \"[0-9]+\.[0-9]+\.[0-9]+\"/version = \"$TAG_VERSION\"/" pyproject.toml
+
+      - name: Commit and push version bump
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pyproject.toml
+          git diff --cached --quiet || git commit -m "chore: bump version to $TAG_VERSION [skip ci]"
+          git push || true
+        env:
+          TAG_VERSION: ${{ github.ref_name }}
 
       - name: Build Python package (for PyPI)
         if: matrix.os == 'ubuntu-latest'
