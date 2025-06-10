@@ -61,23 +61,17 @@ jobs:
           prerelease: false
           generate_release_notes: true
 
-      - name: Upload Linux artifact to Release
+      - name: Download all artifacts
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/download-artifact@v4
+        with:
+          path: all_artifacts
+
+      - name: Upload all platform artifacts to Release
         if: matrix.os == 'ubuntu-latest'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          files: dist/certship
-
-      - name: Upload Windows artifact to Release
-        if: matrix.os == 'windows-latest'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.ref_name }}
-          files: dist/certship.exe
-
-      - name: Upload macOS artifact to Release
-        if: matrix.os == 'macos-latest'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.ref_name }}
-          files: dist/certship
+          files: |
+            all_artifacts/**/certship
+            all_artifacts/**/certship.exe
