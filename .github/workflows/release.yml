@@ -47,6 +47,13 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: rm -rf dist/*
 
+      - name: Sync version from git tag
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          TAG_VERSION=$(echo "${{ github.ref_name }}" | sed 's/^v//')
+          sed -i '' -E "s/^version = \"[0-9]+\.[0-9]+\.[0-9]+\"/version = \"$TAG_VERSION\"/" pyproject.toml
+          sed -i '' -E "s/^version = \"[0-9]+\.[0-9]+\.[0-9]+\"/version = \"$TAG_VERSION\"/" pyproject.toml
+
       - name: Build Python package (for PyPI)
         if: matrix.os == 'ubuntu-latest'
         run: poetry build
