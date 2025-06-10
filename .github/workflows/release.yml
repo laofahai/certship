@@ -33,4 +33,11 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
+          name: certship-${{ matrix.os }}
+          path: dist/certship*
 
+      - name: Publish to PyPI
+        if: matrix.os == 'ubuntu-latest'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
