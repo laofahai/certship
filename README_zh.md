@@ -2,11 +2,11 @@
 
 > 作者博客：https://laofahai.cool
 
-一个使用 acme.sh 自动申请SSL证书，并自动绑定到云平台对象存储（如阿里云 AliOSS）的工具。
+一个使用 acme.sh 自动申请SSL证书，并自动绑定到云平台对象存储（如阿里云 AliOSS）的工具
+起因就是因为这个博客的静态资源托管到Vercel之类的话速度太慢，就放到了国内的平台，但国内平台需要域名备案而且SSL不免费，就写了这个工具 用 acme 从 Let's Encrypt 之类的申请证书，并且绑定到 OSS Bucket 的域名。
 
-- 证书来源：Let's Encrypt（acme.sh 仅为签发工具）
-
-[English README](./README.md)
+> 证书来源：Let's Encrypt（acme.sh 仅为签发工具）
+> 特别鸣谢： Github Copilot 的帮助
 
 ## 安装依赖
 ```bash
