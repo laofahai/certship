@@ -53,10 +53,6 @@ jobs:
           name: certship-${{ matrix.os }}
           path: dist/certship*
 
-      - name: Clean dist directory
-        if: matrix.os == 'ubuntu-latest'
-        run: rm -rf dist/*
-
       - name: Publish to PyPI
         if: matrix.os == 'ubuntu-latest'
         uses: pypa/gh-action-pypi-publish@release/v1
