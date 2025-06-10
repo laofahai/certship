@@ -105,7 +105,7 @@ jobs:
       - name: List all files
         run: find all_artifacts
       - name: Upload all platform artifacts to Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.3.0
         with:
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
