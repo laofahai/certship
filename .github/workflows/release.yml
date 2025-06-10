@@ -1,0 +1,36 @@
+name: Build certship executables
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry pyinstaller
+          poetry install
+
+      - name: Build executable
+        run: |
+          pyinstaller --onefile -p src src/cli.py --name certship
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+
