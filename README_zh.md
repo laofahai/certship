@@ -1,8 +1,12 @@
 # certship
 
-> 作者博客：https://laofahai.cool
+[![PyPI version](https://img.shields.io/pypi/v/certship.svg)](https://pypi.org/project/certship/)
+[![CI](https://github.com/laofahai/certship/actions/workflows/release.yml/badge.svg)](https://github.com/laofahai/certship/actions)
+[![License](https://img.shields.io/github/license/laofahai/certship)](./LICENSE)
 
-[English README](./README.md)
+[English README](README.md)
+
+> 作者博客：https://laofahai.cool
 
 一个使用 acme.sh 自动申请 Let's Encrypt 证书，并自动部署到云平台（如阿里云 AliOSS）的 Python 工具。
 

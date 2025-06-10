@@ -1,8 +1,12 @@
 # certship
 
-> Author blog: https://laofahai.cool
+[![PyPI version](https://img.shields.io/pypi/v/certship.svg)](https://pypi.org/project/certship/)
+[![CI](https://github.com/laofahai/certship/actions/workflows/release.yml/badge.svg)](https://github.com/laofahai/certship/actions)
+[![License](https://img.shields.io/github/license/laofahai/certship)](./LICENSE)
 
-[中文版说明 (Chinese README)](./README_zh.md)
+[中文说明 (Chinese README)](README_zh.md)
+
+> Author blog: https://laofahai.cool
 
 A Python tool that uses acme.sh to automatically apply for certificates and deploy them to cloud platforms (such as Alibaba Cloud AliOSS).
 
