@@ -63,6 +63,10 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: poetry build
 
+      - name: List dist contents
+        if: matrix.os == 'ubuntu-latest'
+        run: ls -l dist/
+
       - name: Build executable
         run: |
           pyinstaller --onefile -p src src/cli.py --name certship --distpath bin -y
@@ -121,3 +125,5 @@ jobs:
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
           packages_dir: all_artifacts/python-package/dist
+      - name: List python package dist contents
+        run: ls -l all_artifacts/python-package/dist || true
