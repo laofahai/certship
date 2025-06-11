@@ -124,6 +124,6 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           password: ${{ secrets.PYPI_API_TOKEN }}
-          packages_dir: all_artifacts/python-package/dist
-      - name: List python package dist contents
-        run: ls -l all_artifacts/python-package/dist || true
+          packages_dir: all_artifacts/python-package
+      - name: List python package contents
+        run: ls -l all_artifacts/python-package || true
